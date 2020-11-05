@@ -16,6 +16,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
+ * テキストフィールドのラッパーです.
  *
  * @author desktopgame
  */
@@ -27,24 +28,52 @@ public class TextFieldSupplier implements Supplier<JTextField> {
         this.textField = new JTextField();
     }
 
+    /**
+     * 現在のテキストを上書きします.
+     *
+     * @param text
+     * @return
+     */
     public TextFieldSupplier overwrite(String text) {
         textField.setText(text);
         return this;
     }
 
+    /**
+     * 入力されているテキストを返します.
+     *
+     * @return
+     */
     public String text() {
         return textField.getText();
     }
 
+    /**
+     * カレットを移動します.
+     *
+     * @param i
+     * @return
+     */
     public TextFieldSupplier move(int i) {
         textField.setCaretPosition(i);
         return this;
     }
 
+    /**
+     * カレットの位置を返します.
+     *
+     * @return
+     */
     public int caret() {
         return textField.getCaretPosition();
     }
 
+    /**
+     * イベントリスナーを追加します.
+     *
+     * @param listener
+     * @return
+     */
     public TextFieldSupplier onUpdate(ChangeListener listener) {
         textField.getDocument().addDocumentListener(new DocumentListener() {
             @Override

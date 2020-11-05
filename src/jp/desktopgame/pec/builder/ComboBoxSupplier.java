@@ -17,7 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
 /**
- * コンボボックスを操作するサプライアの実装です.
+ * コンボボックスのラッパーです.
  *
  * @author desktopgame
  */
@@ -31,15 +31,33 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
         this.comboBox = new JComboBox<>(model);
     }
 
+    /**
+     * 要素を追加します.
+     *
+     * @param item
+     * @return
+     */
     public ComboBoxSupplier add(T item) {
         model.addElement(item);
         return this;
     }
 
+    /**
+     * 要素を全て追加します.
+     *
+     * @param items
+     * @return
+     */
     public ComboBoxSupplier addAll(T... items) {
         return addAll(Arrays.asList(items));
     }
 
+    /**
+     * 要素を全て追加します.
+     *
+     * @param items
+     * @return
+     */
     public ComboBoxSupplier addAll(List<T> items) {
         for (T item : items) {
             add(item);
@@ -47,35 +65,75 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
         return this;
     }
 
+    /**
+     * 要素を上書きします.
+     *
+     * @param items
+     * @return
+     */
     public ComboBoxSupplier overwrite(T... items) {
         return overwrite(Arrays.asList(items));
     }
 
+    /**
+     * 要素を上書きします.
+     *
+     * @param items
+     * @return
+     */
     public ComboBoxSupplier overwrite(List<T> items) {
         removeAll();
         return addAll(items);
     }
 
+    /**
+     * 要素を削除します.
+     *
+     * @param item
+     * @return
+     */
     public ComboBoxSupplier remove(T item) {
         model.removeElement(item);
         return this;
     }
 
+    /**
+     * 要素を削除します.
+     *
+     * @param i
+     * @return
+     */
     public ComboBoxSupplier remove(int i) {
         model.removeElementAt(i);
         return this;
     }
 
+    /**
+     * 要素を全て削除します.
+     *
+     * @return
+     */
     public ComboBoxSupplier removeAll() {
         model.removeAllElements();
         return this;
     }
 
+    /**
+     * 指定の要素を選択状態にします.
+     *
+     * @param i
+     * @return
+     */
     public ComboBoxSupplier select(int i) {
         comboBox.setSelectedIndex(i);
         return this;
     }
 
+    /**
+     * 項目の一覧を返します.
+     *
+     * @return
+     */
     public List<T> list() {
         List<T> ret = new ArrayList<>();
         for (int i = 0; i < model.getSize(); i++) {
@@ -84,18 +142,40 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
         return ret;
     }
 
+    /**
+     * 指定位置の要素を返します.
+     *
+     * @param i
+     * @return
+     */
     public T at(int i) {
         return model.getElementAt(i);
     }
 
+    /**
+     * 選択位置を返します.
+     *
+     * @return
+     */
     public int index() {
         return comboBox.getSelectedIndex();
     }
 
+    /**
+     * 要素数を返します.
+     *
+     * @return
+     */
     public int size() {
         return model.getSize();
     }
 
+    /**
+     * イベントリスナーを追加します.
+     *
+     * @param listener
+     * @return
+     */
     public ComboBoxSupplier onSelect(ItemListener listener) {
         comboBox.addItemListener(listener);
         return this;

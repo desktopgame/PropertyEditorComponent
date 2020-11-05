@@ -14,6 +14,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
 
 /**
+ * スピナーのラッパーです.
  *
  * @author desktopgame
  */
@@ -27,11 +28,26 @@ public class IntegerSpinnerSupplier implements Supplier<JSpinner> {
         this.spinner = new JSpinner(model);
     }
 
+    /**
+     * 値を上書きします.
+     *
+     * @param v
+     * @return
+     */
     public IntegerSpinnerSupplier overwrite(int v) {
         model.setValue(v);
         return this;
     }
 
+    /**
+     * 範囲を設定します.
+     *
+     * @param v
+     * @param min
+     * @param max
+     * @param step
+     * @return
+     */
     public IntegerSpinnerSupplier range(int v, int min, int max, int step) {
         model.setMinimum(min);
         model.setMaximum(max);
@@ -40,10 +56,21 @@ public class IntegerSpinnerSupplier implements Supplier<JSpinner> {
         return this;
     }
 
+    /**
+     * 現在値を返します.
+     *
+     * @return
+     */
     public int current() {
         return (int) model.getValue();
     }
 
+    /**
+     * イベントリスナーを追加します.
+     *
+     * @param listener
+     * @return
+     */
     public IntegerSpinnerSupplier onUpdate(ChangeListener listener) {
         spinner.addChangeListener(listener);
         return this;
