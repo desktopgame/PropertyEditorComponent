@@ -18,23 +18,23 @@ import javax.swing.event.ChangeListener;
  *
  * @author desktopgame
  */
-public class DoubleSpinnerSupplier implements Supplier<JSpinner> {
+public class IntegerSpinnerHelper implements Supplier<JSpinner> {
 
     private SpinnerNumberModel model;
     private JSpinner spinner;
 
-    public DoubleSpinnerSupplier() {
-        this.model = new SpinnerNumberModel(0.0, 0.0, 100.0, 1.0);
+    public IntegerSpinnerHelper() {
+        this.model = new SpinnerNumberModel(0, 0, 100, 1);
         this.spinner = new JSpinner(model);
     }
 
     /**
-     * 現在の値を上書きします.
+     * 値を上書きします.
      *
      * @param v
      * @return
      */
-    public DoubleSpinnerSupplier overwrite(double v) {
+    public IntegerSpinnerHelper overwrite(int v) {
         model.setValue(v);
         return this;
     }
@@ -48,7 +48,7 @@ public class DoubleSpinnerSupplier implements Supplier<JSpinner> {
      * @param step
      * @return
      */
-    public DoubleSpinnerSupplier range(double v, double min, double max, double step) {
+    public IntegerSpinnerHelper range(int v, int min, int max, int step) {
         model.setMinimum(min);
         model.setMaximum(max);
         model.setStepSize(step);
@@ -61,8 +61,8 @@ public class DoubleSpinnerSupplier implements Supplier<JSpinner> {
      *
      * @return
      */
-    public double current() {
-        return (double) model.getValue();
+    public int current() {
+        return (int) model.getValue();
     }
 
     /**
@@ -71,7 +71,7 @@ public class DoubleSpinnerSupplier implements Supplier<JSpinner> {
      * @param listener
      * @return
      */
-    public DoubleSpinnerSupplier onUpdate(ChangeListener listener) {
+    public IntegerSpinnerHelper onUpdate(ChangeListener listener) {
         spinner.addChangeListener(listener);
         return this;
     }
@@ -80,4 +80,5 @@ public class DoubleSpinnerSupplier implements Supplier<JSpinner> {
     public JSpinner get() {
         return spinner;
     }
+
 }

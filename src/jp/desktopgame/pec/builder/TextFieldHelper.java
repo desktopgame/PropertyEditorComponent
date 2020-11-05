@@ -20,11 +20,11 @@ import javax.swing.event.DocumentListener;
  *
  * @author desktopgame
  */
-public class TextFieldSupplier implements Supplier<JTextField> {
+public class TextFieldHelper implements Supplier<JTextField> {
 
     private JTextField textField;
 
-    public TextFieldSupplier() {
+    public TextFieldHelper() {
         this.textField = new JTextField();
     }
 
@@ -34,7 +34,7 @@ public class TextFieldSupplier implements Supplier<JTextField> {
      * @param text
      * @return
      */
-    public TextFieldSupplier overwrite(String text) {
+    public TextFieldHelper overwrite(String text) {
         textField.setText(text);
         return this;
     }
@@ -54,7 +54,7 @@ public class TextFieldSupplier implements Supplier<JTextField> {
      * @param i
      * @return
      */
-    public TextFieldSupplier move(int i) {
+    public TextFieldHelper move(int i) {
         textField.setCaretPosition(i);
         return this;
     }
@@ -74,7 +74,7 @@ public class TextFieldSupplier implements Supplier<JTextField> {
      * @param listener
      * @return
      */
-    public TextFieldSupplier onUpdate(ChangeListener listener) {
+    public TextFieldHelper onUpdate(ChangeListener listener) {
         textField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent arg0) {

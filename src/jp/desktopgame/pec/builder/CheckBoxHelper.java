@@ -17,11 +17,11 @@ import javax.swing.JCheckBox;
  *
  * @author desktopgame
  */
-public class CheckBoxSupplier implements Supplier<JCheckBox> {
+public class CheckBoxHelper implements Supplier<JCheckBox> {
 
     private JCheckBox checkBox;
 
-    public CheckBoxSupplier() {
+    public CheckBoxHelper() {
         this.checkBox = new JCheckBox();
     }
 
@@ -31,7 +31,7 @@ public class CheckBoxSupplier implements Supplier<JCheckBox> {
      * @param b
      * @return
      */
-    public CheckBoxSupplier overwrite(boolean b) {
+    public CheckBoxHelper overwrite(boolean b) {
         checkBox.setSelected(b);
         return this;
     }
@@ -51,7 +51,7 @@ public class CheckBoxSupplier implements Supplier<JCheckBox> {
      * @param listener
      * @return
      */
-    public CheckBoxSupplier onUpdate(ActionListener listener) {
+    public CheckBoxHelper onUpdate(ActionListener listener) {
         checkBox.addActionListener(listener);
         return this;
     }

@@ -38,8 +38,8 @@ public class PropertyEditorBuilder {
      * @param label
      * @return
      */
-    public <T> ComboBoxSupplier<T> comboBox(String label) {
-        ComboBoxSupplier ret = new ComboBoxSupplier();
+    public <T> ComboBoxHelper<T> comboBox(String label) {
+        ComboBoxHelper ret = new ComboBoxHelper();
         properties.add(new AbstractMap.SimpleEntry<>(label, ret));
         return ret;
     }
@@ -50,8 +50,8 @@ public class PropertyEditorBuilder {
      * @param label
      * @return
      */
-    public TextFieldSupplier textField(String label) {
-        TextFieldSupplier ret = new TextFieldSupplier();
+    public TextFieldHelper textField(String label) {
+        TextFieldHelper ret = new TextFieldHelper();
         properties.add(new AbstractMap.SimpleEntry<>(label, ret));
         return ret;
     }
@@ -62,8 +62,8 @@ public class PropertyEditorBuilder {
      * @param label
      * @return
      */
-    public IntegerSpinnerSupplier intSpinner(String label) {
-        IntegerSpinnerSupplier ret = new IntegerSpinnerSupplier();
+    public IntegerSpinnerHelper intSpinner(String label) {
+        IntegerSpinnerHelper ret = new IntegerSpinnerHelper();
         properties.add(new AbstractMap.SimpleEntry<>(label, ret));
         return ret;
     }
@@ -74,8 +74,8 @@ public class PropertyEditorBuilder {
      * @param label
      * @return
      */
-    public DoubleSpinnerSupplier doubleSpinner(String label) {
-        DoubleSpinnerSupplier ret = new DoubleSpinnerSupplier();
+    public DoubleSpinnerHelper doubleSpinner(String label) {
+        DoubleSpinnerHelper ret = new DoubleSpinnerHelper();
         properties.add(new AbstractMap.SimpleEntry<>(label, ret));
         return ret;
     }
@@ -86,8 +86,8 @@ public class PropertyEditorBuilder {
      * @param label
      * @return
      */
-    public CheckBoxSupplier checkBox(String label) {
-        CheckBoxSupplier ret = new CheckBoxSupplier();
+    public CheckBoxHelper checkBox(String label) {
+        CheckBoxHelper ret = new CheckBoxHelper();
         properties.add(new AbstractMap.SimpleEntry<>(label, ret));
         return ret;
     }

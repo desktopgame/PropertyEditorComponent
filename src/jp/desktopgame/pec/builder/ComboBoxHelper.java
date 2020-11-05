@@ -21,12 +21,12 @@ import javax.swing.JComboBox;
  *
  * @author desktopgame
  */
-public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
+public class ComboBoxHelper<T> implements Supplier<JComboBox<T>> {
 
     private DefaultComboBoxModel<T> model;
     private JComboBox<T> comboBox;
 
-    public ComboBoxSupplier() {
+    public ComboBoxHelper() {
         this.model = new DefaultComboBoxModel<>();
         this.comboBox = new JComboBox<>(model);
     }
@@ -37,7 +37,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param item
      * @return
      */
-    public ComboBoxSupplier add(T item) {
+    public ComboBoxHelper add(T item) {
         model.addElement(item);
         return this;
     }
@@ -48,7 +48,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param items
      * @return
      */
-    public ComboBoxSupplier addAll(T... items) {
+    public ComboBoxHelper addAll(T... items) {
         return addAll(Arrays.asList(items));
     }
 
@@ -58,7 +58,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param items
      * @return
      */
-    public ComboBoxSupplier addAll(List<T> items) {
+    public ComboBoxHelper addAll(List<T> items) {
         for (T item : items) {
             add(item);
         }
@@ -71,7 +71,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param items
      * @return
      */
-    public ComboBoxSupplier overwrite(T... items) {
+    public ComboBoxHelper overwrite(T... items) {
         return overwrite(Arrays.asList(items));
     }
 
@@ -81,7 +81,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param items
      * @return
      */
-    public ComboBoxSupplier overwrite(List<T> items) {
+    public ComboBoxHelper overwrite(List<T> items) {
         removeAll();
         return addAll(items);
     }
@@ -92,7 +92,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param item
      * @return
      */
-    public ComboBoxSupplier remove(T item) {
+    public ComboBoxHelper remove(T item) {
         model.removeElement(item);
         return this;
     }
@@ -103,7 +103,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param i
      * @return
      */
-    public ComboBoxSupplier remove(int i) {
+    public ComboBoxHelper remove(int i) {
         model.removeElementAt(i);
         return this;
     }
@@ -113,7 +113,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      *
      * @return
      */
-    public ComboBoxSupplier removeAll() {
+    public ComboBoxHelper removeAll() {
         model.removeAllElements();
         return this;
     }
@@ -124,7 +124,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param i
      * @return
      */
-    public ComboBoxSupplier select(int i) {
+    public ComboBoxHelper select(int i) {
         comboBox.setSelectedIndex(i);
         return this;
     }
@@ -176,7 +176,7 @@ public class ComboBoxSupplier<T> implements Supplier<JComboBox<T>> {
      * @param listener
      * @return
      */
-    public ComboBoxSupplier onSelect(ItemListener listener) {
+    public ComboBoxHelper onSelect(ItemListener listener) {
         comboBox.addItemListener(listener);
         return this;
     }
