@@ -1,7 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * PropertyEditorComponent
+ *
+ * Copyright (c) 2020 desktopgame
+ *
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
  */
 package jp.desktopgame.pec;
 
@@ -12,6 +15,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
+ * 倍数度浮動小数点数を編集するためのエディターです.
  *
  * @author desktopgame
  */
