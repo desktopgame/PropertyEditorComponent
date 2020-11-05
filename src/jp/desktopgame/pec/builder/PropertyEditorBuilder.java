@@ -25,6 +25,7 @@ public class PropertyEditorBuilder {
 
     private List<AbstractMap.SimpleEntry<String, Supplier<? extends Component>>> properties;
     private List<Component> footers;
+    private Component fill;
 
     public PropertyEditorBuilder() {
         this.properties = new ArrayList<>();
@@ -105,6 +106,18 @@ public class PropertyEditorBuilder {
     }
 
     /**
+     * 余白を潰すためのコンポーネントを指定します. 指定しなかった場合には透明のコンポーネントが設定されます。
+     *
+     * @param <T>
+     * @param fill
+     * @return
+     */
+    public <T extends Component> T fill(T fill) {
+        this.fill = fill;
+        return fill;
+    }
+
+    /**
      * 現在の設定でエディターペインを生成します.
      *
      * @return
@@ -118,7 +131,11 @@ public class PropertyEditorBuilder {
                 for (Component c : footers) {
                     addLine(c);
                 }
-                addFooter();
+                if (fill != null) {
+                    addFooter(fill);
+                } else {
+                    addFooter();
+                }
             }
         };
     }
@@ -146,7 +163,11 @@ public class PropertyEditorBuilder {
                 for (Component c : footers) {
                     addLine(c);
                 }
-                addFooter();
+                if (fill != null) {
+                    addFooter(fill);
+                } else {
+                    addFooter();
+                }
             }
         };
     }
