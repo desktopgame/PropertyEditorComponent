@@ -13,6 +13,8 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import jp.desktopgame.pec.PropertyEditorDialog;
 import jp.desktopgame.pec.PropertyEditorPane;
 
@@ -94,6 +96,29 @@ public class PropertyEditorBuilder {
     }
 
     /**
+     * 区切り線を追加します.
+     *
+     * @return
+     */
+    public PropertyEditorBuilder separator() {
+        return separator("");
+    }
+
+    /**
+     * 区切り線を追加します.
+     *
+     * @param label
+     * @return
+     */
+    public PropertyEditorBuilder separator(String label) {
+        if (label != null && !label.equals("")) {
+            properties.add(new AbstractMap.SimpleEntry<>("", () -> new JLabel(label)));
+        }
+        properties.add(new AbstractMap.SimpleEntry<>("", () -> new JSeparator()));
+        return this;
+    }
+
+    /**
      * フッターを追加します.
      *
      * @param <T>
@@ -126,7 +151,11 @@ public class PropertyEditorBuilder {
         return new PropertyEditorPane() {
             {
                 for (AbstractMap.SimpleEntry<String, Supplier<? extends Component>> kv : properties) {
-                    addLine(kv.getKey(), kv.getValue().get());
+                    if (kv.getKey().equals("")) {
+                        addLine(kv.getValue().get());
+                    } else {
+                        addLine(kv.getKey(), kv.getValue().get());
+                    }
                 }
                 for (Component c : footers) {
                     addLine(c);
@@ -158,7 +187,11 @@ public class PropertyEditorBuilder {
             @Override
             protected void init() {
                 for (AbstractMap.SimpleEntry<String, Supplier<? extends Component>> kv : properties) {
-                    addLine(kv.getKey(), kv.getValue().get());
+                    if (kv.getKey().equals("")) {
+                        addLine(kv.getValue().get());
+                    } else {
+                        addLine(kv.getKey(), kv.getValue().get());
+                    }
                 }
                 for (Component c : footers) {
                     addLine(c);
