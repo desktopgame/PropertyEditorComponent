@@ -96,6 +96,31 @@ public class PropertyEditorBuilder {
     }
 
     /**
+     * 何らかのコンポーネントを追加します.
+     *
+     * @param <T>
+     * @param label
+     * @param comp
+     * @return
+     */
+    public <T extends Component> T any(String label, T comp) {
+        properties.add(new AbstractMap.SimpleEntry<>(label, () -> comp));
+        return comp;
+    }
+
+    /**
+     * ボタンを追加します.
+     *
+     * @param label
+     * @return
+     */
+    public ButtonHelper button(String label) {
+        ButtonHelper ret = new ButtonHelper(label);
+        properties.add(new AbstractMap.SimpleEntry<>("", ret));
+        return ret;
+    }
+
+    /**
      * 区切り線を追加します.
      *
      * @return
