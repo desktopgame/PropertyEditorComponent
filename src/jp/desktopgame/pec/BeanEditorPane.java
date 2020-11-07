@@ -8,6 +8,7 @@
  */
 package jp.desktopgame.pec;
 
+import java.awt.Component;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -175,6 +176,9 @@ public class BeanEditorPane<T> extends PropertyEditorPane {
     private JComponent putComponent(Field f, PropertyEditor c) {
         String name = f.getName();
         editorMap.put(name, c);
+        if (name.equals(name.toUpperCase())) {
+            enableHierarchy(c.getComponent(), false);
+        }
         c.addPropertyInputListener((e) -> {
             Object iv = e.getSource().getInputValue();
             target.ifPresent((target) -> {
@@ -185,6 +189,16 @@ public class BeanEditorPane<T> extends PropertyEditorPane {
             });
         });
         return c.getComponent();
+    }
+
+    private void enableHierarchy(JComponent c, boolean b) {
+        c.setEnabled(b);
+        for (int i = 0; i < c.getComponentCount(); i++) {
+            Component child = c.getComponent(i);
+            if (child instanceof JComponent) {
+                enableHierarchy((JComponent) child, b);
+            }
+        }
     }
 
     /**
